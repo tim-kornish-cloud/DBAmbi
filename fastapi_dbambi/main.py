@@ -33,9 +33,10 @@ posts: list[dict] = [
 # def home():
 #     return f"<h1>{posts[0]['title']}</h1>"
 
-@app.get("/posts", response_class = HTMLResponse, include_in_schema = False)
-def home():
-    return f"<h1>{posts[0]['title']}</h1>"
+@app.get("/", include_in_schema = True)
+@app.get("/posts", include_in_schema = False)
+def home(request: Request):
+    return templates.TemplateResponse(request, "home.html", {"posts" : posts, "title" : "Home"})
 
 @app.get("/api/posts")
 def get_posts():
