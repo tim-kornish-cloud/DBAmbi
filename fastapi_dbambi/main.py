@@ -1,8 +1,16 @@
 from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
 # from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+# initialize fast api app
 app = FastAPI()
+
+# mount static folder for css to pull values into html
+# 1. directory/location sub-path of static files to add to app, will include all folders starting with static
+# 2. name of specific directory to look for static files
+# 3. name that can be referenced by fastapi to pull values/files with
+app.mount("/static", StaticFiles(directory = "static"), name = "static")
 
 templates = Jinja2Templates(directory = "templates")
 
