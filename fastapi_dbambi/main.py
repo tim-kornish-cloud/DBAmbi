@@ -1,10 +1,19 @@
-from fastapi import FastAPI, HTTPException, Request, status
+from fastapi import FastAPI, HTTPException, Request, status, Depends
 from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
 from fastapi.templating import Jinja2Templates
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from schemas import PostCreate, PostResponse
+from typing import Annotated
+
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+import models
+from database import Base, engine, get_db
+
+Base.metadata.create_all(bind = engine)
 
 # initialize fast api app
 app = FastAPI()
@@ -14,6 +23,8 @@ app = FastAPI()
 # 2. name of specific directory to look for static files
 # 3. name that can be referenced by fastapi to pull values/files with
 app.mount("/static", StaticFiles(directory = "static"), name = "static")
+
+app.mount("/media", StaticFiles(directory = "media"), name = "media")
 
 templates = Jinja2Templates(directory = "templates")
 
