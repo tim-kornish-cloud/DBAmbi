@@ -1,9 +1,8 @@
+from contextlib import asynccontextmanager
 from typing import Annotated
 
-from contextlib import asynccontextmanager
-
-from fastapi.exception_handlers import http_exception_handler, request_validation_exception_handler
 from fastapi import Depends, FastAPI, HTTPException, Request, status
+from fastapi.exception_handlers import http_exception_handler, request_validation_exception_handler
 from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -14,7 +13,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 import models
 from database import Base, engine, get_db
-from schemas import PostCreate, PostUpdate, PostResponse, UserCreate, UserUpdate, UserResponse
+from routers import posts, users
 
 
 @asynccontextmanager
