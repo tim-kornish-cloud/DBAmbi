@@ -17,8 +17,6 @@ router = APIRouter()
     response_model=UserResponse,
     status_code=status.HTTP_201_CREATED,
 )
-
-
 async def create_user(user: UserCreate, db: Annotated[AsyncSession, Depends(get_db)]):
     result = await db.execute(
         select(models.User).where(models.User.username == user.username),
@@ -71,7 +69,8 @@ async def get_user_posts(user_id: int, db: Annotated[AsyncSession, Depends(get_d
     result = await db.execute(
         select(models.Post)
         .options(selectinload(models.Post.author))
-        .where(models.Post.user_id == user_id),
+        .where(models.Post.user_id == user_id)
+        .order_by(models.Post.date_posted.desc()),
     )
     posts = result.scalars().all()
     return posts
