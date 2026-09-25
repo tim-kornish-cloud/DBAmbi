@@ -11,4 +11,4 @@ class Settings(BaseSettings):
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
 
-settings = Settings() # loaded from the .env file
+settings = Settings() # type: ignore[call-arg] # loaded from the .env file
