@@ -3,3 +3,5 @@
 
 *.sqlite3
 *.db
+*.pyc
+*.cpython-313.pyc
