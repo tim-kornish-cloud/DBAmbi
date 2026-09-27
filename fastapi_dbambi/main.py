@@ -2,7 +2,10 @@ from contextlib import asynccontextmanager
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, Request, status
-from fastapi.exception_handlers import http_exception_handler, request_validation_exception_handler
+from fastapi.exception_handlers import (
+    http_exception_handler,
+    request_validation_exception_handler,
+)
 from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -41,7 +44,9 @@ app.include_router(posts.router, prefix="/api/posts", tags=["posts"])
 @app.get("/posts", include_in_schema=False, name="posts")
 async def home(request: Request, db: Annotated[AsyncSession, Depends(get_db)]):
     result = await db.execute(
-        select(models.Post).options(selectinload(models.Post.author)),
+        select(models.Post)
+        .options(selectinload(models.Post.author))
+        .order_by(models.Post.date_posted.desc()),
     )
     posts = result.scalars().all()
     return templates.TemplateResponse(
@@ -89,7 +94,8 @@ async def user_posts_page(
     result = await db.execute(
         select(models.Post)
         .options(selectinload(models.Post.author))
-        .where(models.Post.user_id == user_id),
+        .where(models.Post.user_id == user_id)
+        .order_by(models.Post.date_posted.desc()),
     )
     posts = result.scalars().all()
     return templates.TemplateResponse(
@@ -97,6 +103,7 @@ async def user_posts_page(
         "user_posts.html",
         {"posts": posts, "user": user, "title": f"{user.username}'s Posts"},
     )
+
 
 @app.get("/login", include_in_schema=False)
 async def login_page(request: Request):
@@ -114,6 +121,16 @@ async def register_page(request: Request):
         "register.html",
         {"title": "Register"},
     )
+
+
+@app.get("/account", include_in_schema=False)
+async def account_page(request: Request):
+    return templates.TemplateResponse(
+        request,
+        "account.html",
+        {"title": "Account"},
+    )
+
 
 @app.exception_handler(StarletteHTTPException)
 async def general_http_exception_handler(
