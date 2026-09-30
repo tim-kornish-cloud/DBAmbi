@@ -13,6 +13,25 @@ query data from multiple db and compare on web interface
   - uv run python populate_db.py
 - create secret_key in terminal
   - python -c "import secrets; print(secrets.token_hex(32))"
+- Postgres commands
+  - psql -U postgres
+    - access command line
+  - psql -U postgres -c "CREATE USER bloguser WITH PASSWORD 'blogpass';"
+  - createdb -U postgres -O bloguser blog
+- postgres command line:
+  - \l - list all database
+  - \c <dbname> connect to specific db
+  - \dt list all table in current database
+  - \d <tablename> describe table, columns, datatypes, indexes...
+  - \dn list all schemas on db
+  - \dv list all views on db
+  - \du list all users and privileges
+  - \dx	List installed extensions.
+  - \q quit out of postgres terminal
+  - \i filename.sql	Execute an SQL file directly from inside the session.
+
+
+
 
 ## mailtrap.io  
 Use mailtrap.io to test reset_passowrd attempts so as to not accidentally send spam email password reset request to real emails.
