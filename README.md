@@ -30,7 +30,7 @@ query data from multiple db and compare on web interface
   - \q quit out of postgres terminal
   - \i filename.sql	Execute an SQL file directly from inside the session.
 - Run alembic for database setup/migration
-  - uv run alembic
+  - uv run alembic init -t async alembic
 
 
 
