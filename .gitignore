@@ -1,3 +1,4 @@
 *.pyc
 fastapi_dbambi/__pycache__/main.cpython-313.pyc
 fastapi_dbambi/routers/__pycache__/posts.cpython-313.pyc
+.env
