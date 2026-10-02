@@ -33,6 +33,8 @@ query data from multiple db and compare on web interface
   - uv run alembic init -t async alembic
   - uv run alembic revision --autogenerate -m "initial schema"
     - --autogenerate creates migration file, but does not execute it
+  - uv run alembic upgrade head
+    - update migrations based on latest version in version folder
 
 
 
