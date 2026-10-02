@@ -38,6 +38,8 @@ query data from multiple db and compare on web interface
     - (this is the execution of migration file)
   - uv run alembic current
     - check state on latest alembic migration
+  - uv run alembic downgrade -1
+    - go back one migration
 
 
 
