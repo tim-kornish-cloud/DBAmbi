@@ -35,6 +35,9 @@ query data from multiple db and compare on web interface
     - --autogenerate creates migration file, but does not execute it
   - uv run alembic upgrade head
     - update migrations based on latest version in version folder
+    - (this is the execution of migration file)
+  - uv run alembic current
+    - check state on latest alembic migration
 
 
 
