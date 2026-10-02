@@ -12,6 +12,8 @@ from main import app
 
 POPULATE_IMAGES_DIR = Path("populate_images")
 
+asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 USERS = [
     {
         "username": "CoreyMSchafer",
