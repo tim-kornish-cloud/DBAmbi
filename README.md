@@ -31,6 +31,8 @@ query data from multiple db and compare on web interface
   - \i filename.sql	Execute an SQL file directly from inside the session.
 - Run alembic for database setup/migration
   - uv run alembic init -t async alembic
+  - uv run alembic revision --autogenerate -m "initial schema"
+    - --autogenerate creates migration file, but does not execute it
 
 
 
