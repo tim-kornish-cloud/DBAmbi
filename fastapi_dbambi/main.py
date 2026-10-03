@@ -19,13 +19,9 @@ from config import settings
 from database import engine, get_db
 from routers import posts, users
 
-## this is specifically for sqlite
+
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
-    # # Startup
-    # async with engine.begin() as conn:
-    #     # this is the sqlite version
-    #     # await conn.run_sync(Base.metadata.create_all)
     yield
     # Shutdown
     await engine.dispose()
@@ -34,7 +30,6 @@ async def lifespan(_app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
-app.mount("/media", StaticFiles(directory="media"), name="media")
 
 templates = Jinja2Templates(directory="templates")
 
