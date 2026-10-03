@@ -11,6 +11,8 @@ from database import AsyncSessionLocal, engine
 from image_utils import _get_s3_client
 from main import app
 
+asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 POPULATE_IMAGES_DIR = Path("populate_images")
 
 USERS = [
