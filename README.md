@@ -18,6 +18,7 @@ query data from multiple db and compare on web interface
     - access command line
   - psql -U postgres -c "CREATE USER bloguser WITH PASSWORD 'blogpass';"
   - createdb -U postgres -O bloguser blog
+  - createdb -U postgres -O bloguser test_blog
 - postgres command line:
   - \l - list all database
   - \c <dbname> connect to specific db
