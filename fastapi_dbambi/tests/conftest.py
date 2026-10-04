@@ -24,3 +24,18 @@ from sqlalchemy.pool import NullPool
 
 from database import Base, get_db
 from main import app
+
+pytest_plugins = ["anyio"]
+
+
+@pytest.fixture(scope = "session")
+def anyio_backend():
+    return "asyncio"
+
+@pytest.fixture(scope="session")
+def test_engine():
+    engine = create_async_engine(
+        os.environ["DATABASE_URL"],
+        poolclass=NullPool,
+    )
+    return engine
