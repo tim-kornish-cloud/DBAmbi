@@ -1,10 +1,8 @@
 import pytest
 from httpx import AsyncClient
-import asyncio
 
 from tests.conftest import auth_header, create_test_user, login_user
 
-asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 @pytest.mark.anyio
 async def test_get_posts_empty(client: AsyncClient):
