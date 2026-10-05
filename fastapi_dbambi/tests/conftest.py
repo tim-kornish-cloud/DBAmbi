@@ -9,11 +9,32 @@ os.environ["SECRET_KEY"] = "test-secret-key-for-testing-only"
 
 os.environ["S3_ACCESS_KEY_ID"] = "testing"
 os.environ["S3_SECRET_ACCESS_KEY"] = "testing"
-os.environ["S3_REGION"] = "us-east-2"
+os.environ["S3_REGION"] = "us-east-1" # has to be us-east-1 for this parameter configuration on some functions
 
 os.environ["AWS_ACCESS_KEY_ID"] = "testing"
 os.environ["AWS_SECRET_ACCESS_KEY"] = "testing"
-os.environ["AWS_DEFAULT_REGION"] = "us-east-2"
+os.environ["AWS_DEFAULT_REGION"] = "us-east-1" # has to be us-east-1 for this parameter configuration on some functions
+
+## this is how to set region to other than us-east-1
+# REGION = "us-west-2"  # Change to your target region
+#
+# # 1. Specify the region when creating the client
+# s3_client = boto3.client("s3", region_name=REGION)
+#
+# # 2. Provide the LocationConstraint matching that region
+# response = s3_client.create_bucket(
+#     Bucket="your-unique-bucket-name",
+#     CreateBucketConfiguration={
+#         "LocationConstraint": REGION
+#     }
+# )
+
+## this is standard process using us-east-1
+# Initialize client for us-east-1
+# s3_client = boto3.client("s3", region_name="us-east-1")
+#
+# Leave out CreateBucketConfiguration entirely
+# response = s3_client.create_bucket(Bucket="your-unique-bucket-name")
 
 import boto3
 import pytest
@@ -24,8 +45,10 @@ from sqlalchemy.pool import NullPool
 
 from database import Base, get_db
 from main import app
+import asyncio
 
 pytest_plugins = ["anyio"]
+asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
 @pytest.fixture(scope = "session")
