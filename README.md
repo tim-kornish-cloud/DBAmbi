@@ -45,6 +45,7 @@ as framework to create query interface with salesforce environments
 ### pytest commands
   - uv run pytest tests/test_posts.py -v
   - uv run pytest tests/test_users.py -v
+  - uv run pytest tests/ -v
 
 
 
