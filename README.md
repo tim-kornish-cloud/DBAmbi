@@ -1,5 +1,6 @@
 # DBAmbi
-query data from multiple db and compare on web interface
+Following a fast api tutorial on youtube, will eventually use
+as framework to create query interface with salesforce environments
 
 ## console commands
 
