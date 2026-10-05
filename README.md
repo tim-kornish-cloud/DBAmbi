@@ -49,9 +49,8 @@ as framework to create query interface with salesforce environments
   - uv run pytest tests/
   - uv run pytest tests/test_posts.py::test_get_posts_empty -v
 
-
-
-
-
 ## mailtrap.io  
 Use mailtrap.io to test reset_passowrd attempts so as to not accidentally send spam email password reset request to real emails.
+
+## Docker
+## Google Cloud Run
