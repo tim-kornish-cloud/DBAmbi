@@ -42,7 +42,7 @@ query data from multiple db and compare on web interface
   - uv run alembic downgrade -1
     - go back one migration
 ### pytest commands
-  - uv run pytest test/test_post.py -v
+  - uv run pytest tests/test_posts.py -v
 
 
 
