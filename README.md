@@ -44,6 +44,7 @@ as framework to create query interface with salesforce environments
     - go back one migration
 ### pytest commands
   - uv run pytest tests/test_posts.py -v
+  - uv run pytest tests/test_users.py -v
 
 
 
