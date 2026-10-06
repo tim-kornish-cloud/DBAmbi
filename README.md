@@ -58,8 +58,11 @@ Use mailtrap.io to test reset_passowrd attempts so as to not accidentally send s
 ## Google Cloud Run
  - gcloud --version
  - gcloud auth login
- - gcloud config set project PROJECT_ID
+ - gcloud config set project fastapi-blog-510805
  - gcloud services enable run.googleapis.com
  - gcloud services enable cloudbuild.googleapis.com
  - gcloud services enable artifactregistry.googleapis.com
  - gcloud services list --enabled
+ - gcloud artifacts repositories create fastapi-repo --repository-format=docker --location=us-east4
+ - gcloud builds submit --tag us-east4-docker.pkg.dev/fastapi-blog-510805/fastapi-repo/fastapi-app
+ - gcloud run deploy fastapi-service --image us-east4-docker.pkg.dev/fastapi-blog-510805/fastapi-repo/fastapi-app --region us-east4 --allow-unauthenticated
