@@ -53,4 +53,13 @@ as framework to create query interface with salesforce environments
 Use mailtrap.io to test reset_passowrd attempts so as to not accidentally send spam email password reset request to real emails.
 
 ## Docker
+ - docker build -t fastapi-app .
+ - docker run -p 8080:8080 --env-file .env fastapi-app
 ## Google Cloud Run
+ - gcloud --version
+ - gcloud auth login
+ - gcloud config set project PROJECT_ID
+ - gcloud services enable run.googleapis.com
+ - gcloud services enable cloudbuild.googleapis.com
+ - gcloud services enable artifactregistry.googleapis.com
+ - gcloud services list --enabled
