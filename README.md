@@ -66,3 +66,7 @@ Use mailtrap.io to test reset_passowrd attempts so as to not accidentally send s
  - gcloud artifacts repositories create fastapi-repo --repository-format=docker --location=us-east4
  - gcloud builds submit --tag us-east4-docker.pkg.dev/fastapi-blog-510805/fastapi-repo/fastapi-app
  - gcloud run deploy fastapi-service --image us-east4-docker.pkg.dev/fastapi-blog-510805/fastapi-repo/fastapi-app --region us-east4 --allow-unauthenticated
+ - gcloud beat run domain-mappings create --service=fastapi-service --domain=timmehhhhblog.com --region=us-east4
+ - gcloud beta run domain-mappings describe --domain=timmehhhhblog.com --region=us-east4
+## Google Search console
+ - Set up custom domain instead of odd console name
